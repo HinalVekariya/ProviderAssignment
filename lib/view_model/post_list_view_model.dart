@@ -1,12 +1,13 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:provider_assignment/model/post.dart';
 import 'package:provider_assignment/service/post_service.dart';
 
 class PostListViewModel with ChangeNotifier {
   PostService postService;
+  List<Post> postList = [];
   bool _isLoading = false;
+
+  PostListViewModel(this.postService);
 
   bool get isLoading => _isLoading;
 
@@ -14,10 +15,6 @@ class PostListViewModel with ChangeNotifier {
     _isLoading = value;
     notifyListeners();
   }
-
-  PostListViewModel(this.postService);
-
-  List<Post> postList = [];
 
   setPostList(List<Post> postList) {
     this.postList = postList;

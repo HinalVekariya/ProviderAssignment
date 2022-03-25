@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:provider_assignment/viewmodel/post_list_view_model.dart';
-import 'package:provider_assignment/ui/post_view.dart';
+import 'package:provider_assignment/ui/post_list/post_list_item_view.dart';
+import 'package:provider_assignment/view_model/post_list_view_model.dart';
 
 class PostListScreen extends StatefulWidget {
   const PostListScreen({Key? key}) : super(key: key);
@@ -22,7 +22,7 @@ class _PostListScreenState extends State<PostListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("PostList"),),
+      appBar: AppBar(title: const Text("Post List"),),
       body: ChangeNotifierProvider.value(
         value: Provider.of<PostListViewModel>(context, listen: false),
         child: Consumer<PostListViewModel>(
@@ -32,7 +32,8 @@ class _PostListScreenState extends State<PostListScreen> {
                 : ListView.builder(
                     itemCount: postListViewModel.postList.length,
                     itemBuilder: (BuildContext context, int index) {
-                      return PostView(post: postListViewModel.postList[index]);
+                      return PostListItemView(
+                          post: postListViewModel.postList[index]);
                     });
           },
         ),
